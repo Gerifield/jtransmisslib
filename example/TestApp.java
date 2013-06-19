@@ -7,7 +7,6 @@ package example;
 import hu.gerifield.jtransmisslib.Response;
 import hu.gerifield.jtransmisslib.TransMan;
 import java.util.Scanner;
-import org.json.JSONObject;
 
 /**
  *
