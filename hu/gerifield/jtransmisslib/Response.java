@@ -9,6 +9,7 @@ package hu.gerifield.jtransmisslib;
  * @author Gergely
  */
 public class Response {
+
     private int httpCode;
     private String result;
 
@@ -39,9 +40,9 @@ public class Response {
     public void setResult(String result) {
         this.result = result;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.result;
     }
 }

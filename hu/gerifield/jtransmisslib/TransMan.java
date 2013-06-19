@@ -34,62 +34,62 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 //DOKSI: https://trac.transmissionbt.com/browser/trunk/extras/rpc-spec.txt
-
 /**
  *
  * @author Gergely
  */
 public class TransMan {
+
     private HttpHost targetHost;
     private HttpClient httpclient;
     /*private AuthCache authCache;
-    private BasicHttpContext localcontext;*/
+     private BasicHttpContext localcontext;*/
     private String sessionId;
     private String authdata;
-    
-    public void init(String host, int port, String protocol, String user, String pass){
+
+    public void init(String host, int port, String protocol, String user, String pass) {
         targetHost = new HttpHost(host, port, protocol);
         //httpclient = new DefaultHttpClient();
         httpclient = new DefaultHttpClient();
-        String creds = user+":"+pass;
+        String creds = user + ":" + pass;
         authdata = Base64.encodeBase64String(creds.getBytes());
     }
-    
-    public String genJSONRequest(String method, String arguments){
-        try{
+
+    public String genJSONRequest(String method, String arguments) {
+        try {
             JSONObject req = new JSONObject();
             req.put("method", method);
             Scanner sc = new Scanner(arguments).useDelimiter(", *");
             JSONObject args = new JSONObject();
-            while(sc.hasNext()){
+            while (sc.hasNext()) {
                 args.append("fields", sc.next());
             }
             req.put("arguments", args);
-            
+
             return req.toString();
-        }catch(JSONException e){
+        } catch (JSONException e) {
             return null;
         }
     }
-    
-    public ArrayList<HashMap<String, Object>> jsonResultToArray(String res){
-        try{
+
+    public ArrayList<HashMap<String, Object>> jsonResultToArray(String res) {
+        try {
             JSONObject r = new JSONObject(res);
-            if(r.get("result").equals("success")){
+            if (r.get("result").equals("success")) {
                 JSONObject args = r.getJSONObject("arguments");
                 //System.out.println("ARGS: "+args);
                 JSONArray torrents = args.getJSONArray("torrents");
-                
+
                 JSONObject torrent;
                 String key;
                 HashMap<String, Object> t;
                 ArrayList<HashMap<String, Object>> result = new ArrayList<>();
-                for(int i = 0; i < torrents.length(); i++){
+                for (int i = 0; i < torrents.length(); i++) {
                     torrent = torrents.getJSONObject(i);
                     Iterator it = torrent.keys();
                     t = new HashMap<>();
-                    while(it.hasNext()){
-                        key = (String)it.next();
+                    while (it.hasNext()) {
+                        key = (String) it.next();
                         //System.out.print(key+" = "+torrent.get(key)+" ");
                         t.put(key, torrent.get(key));
                     }
@@ -99,102 +99,102 @@ public class TransMan {
                 //System.out.println("Méret: "+result.size()+" "+result);
                 return result;
 
-            }else{
+            } else {
                 return null;
             }
-        }catch(JSONException e){
+        } catch (JSONException e) {
             return null;
         }
     }
-    
-    public void parseResult(String res){
-        try{
+
+    public void parseResult(String res) {
+        try {
             JSONObject r = new JSONObject(res);
-            if(r.get("result").equals("success")){
+            if (r.get("result").equals("success")) {
                 JSONObject args = r.getJSONObject("arguments");
                 //System.out.println("ARGS: "+args);
                 JSONArray torrents = args.getJSONArray("torrents");
-                
+
                 JSONObject torrent;
                 String key;
                 HashMap<String, Object> t;
                 ArrayList<HashMap<String, Object>> result = new ArrayList<>();
-                for(int i = 0; i < torrents.length(); i++){
+                for (int i = 0; i < torrents.length(); i++) {
                     torrent = torrents.getJSONObject(i);
                     Iterator it = torrent.keys();
                     t = new HashMap<>();
-                    while(it.hasNext()){
-                        key = (String)it.next();
-                        System.out.print(key+" = "+torrent.get(key)+" ");
+                    while (it.hasNext()) {
+                        key = (String) it.next();
+                        System.out.print(key + " = " + torrent.get(key) + " ");
                         t.put(key, torrent.get(key));
                     }
                     result.add(t);
                     System.out.println("");
                 }
-                System.out.println("Méret: "+result.size()+" "+result);
-                
+                System.out.println("Méret: " + result.size() + " " + result);
+
 
             }
-        }catch(JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-    
-    public void getTorrents(){
+
+    public void getTorrents() {
         JSONObject req = new JSONObject();
-        try{
+        try {
             req.put("method", "torrent-get");
             JSONObject args = new JSONObject();
             args.append("fields", "id"); //accumulate is jó, de az 1 értéknél putként viselkedik
             args.append("fields", "name");
             req.put("arguments", args);
             System.out.println(req);
-        
-        }catch(JSONException e){
+
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        
-        try{
-        //String t = postRequest("/transmission/rpc", "{ \"method\": \"torrent-get\", \"arguments\": {\"fields\": [\"id\", \"name\"] } }");
+
+        try {
+            //String t = postRequest("/transmission/rpc", "{ \"method\": \"torrent-get\", \"arguments\": {\"fields\": [\"id\", \"name\"] } }");
             Response t = postRequest("/transmission/rpc", req.toString());
-        
+
             JSONObject obj = new JSONObject(t.getResult());
             System.out.println(obj);
-            
+
             System.out.println(obj.getString("result"));
             JSONArray arr = obj.getJSONObject("arguments").getJSONArray("torrents");
             System.out.println(arr);
-            
-            System.out.println("Méret: "+arr.length());
-            for(int i = 0; i < arr.length(); i++){
-                System.out.println(i+" "+arr.getJSONObject(i).getString("name"));
+
+            System.out.println("Méret: " + arr.length());
+            for (int i = 0; i < arr.length(); i++) {
+                System.out.println(i + " " + arr.getJSONObject(i).getString("name"));
             }
-            
-        }catch(JSONException e){
+
+        } catch (JSONException e) {
             e.printStackTrace();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    public Response postRequest(String URL, String request) throws IOException{
-        
+
+    public Response postRequest(String URL, String request) throws IOException {
+
         HttpPost hp = new HttpPost(URL);
 
         StringEntity ent = new StringEntity(request, "UTF-8");
         hp.setEntity(ent);
 
-        hp.addHeader("Authorization", "Basic "+authdata);
+        hp.addHeader("Authorization", "Basic " + authdata);
 
-        if(sessionId != null){
+        if (sessionId != null) {
             hp.addHeader("X-Transmission-Session-Id", sessionId);
         }
 
         //HttpResponse response = httpclient.execute(targetHost, hp, localcontext);
         HttpResponse response = httpclient.execute(targetHost, hp);
 
-        if(response.getStatusLine().getStatusCode() == 409){
+        if (response.getStatusLine().getStatusCode() == 409) {
             EntityUtils.consume(response.getEntity()); //le kell záratni a korábbi kapcsolatot különben:
             //HIBA: Invalid use of BasicClientConnManager: connection still allocated.
             sessionId = response.getFirstHeader("X-Transmission-Session-Id").getValue();
@@ -207,26 +207,22 @@ public class TransMan {
         responseObj.setHttpCode(response.getStatusLine().getStatusCode());
 
         HttpEntity respEnt = response.getEntity();
-        if(respEnt != null){
+        if (respEnt != null) {
             String line;
             //Scanner sc = new Scanner(respent.getContent()).useDelimiter("\\A");
             BufferedReader reader = new BufferedReader(new InputStreamReader(respEnt.getContent()));
             StringBuilder sb = new StringBuilder();
-            while((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 sb.append(line);
             }
             responseObj.setResult(sb.toString());
         }
-        
+
         return responseObj;
     }
-    
-    
-    
     /*private void parseHeader(HttpResponse resp){
-        if(resp.containsHeader("X-Transmission-Session-Id")){
-            sessionId = resp.getFirstHeader("X-Transmission-Session-Id").getValue();
-        }
-    }*/
-    
+     if(resp.containsHeader("X-Transmission-Session-Id")){
+     sessionId = resp.getFirstHeader("X-Transmission-Session-Id").getValue();
+     }
+     }*/
 }
