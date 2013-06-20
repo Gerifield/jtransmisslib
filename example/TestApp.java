@@ -7,7 +7,10 @@ package example;
 import hu.gerifield.jtransmisslib.TransMan;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Response;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Torrent;
+import java.util.BitSet;
 import java.util.Scanner;
+import org.apache.commons.codec.binary.StringUtils;
+import sun.misc.BASE64Decoder;
 
 /**
  *
@@ -34,7 +37,8 @@ public class TestApp {
         //System.out.println(res);
 
         //tm.getTorrents();
-        String keres = tm.genJSONRequest("torrent-get", "id, name, peers,trackerStats");
+        //String keres = tm.genJSONRequest("torrent-get", "id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted");
+        String keres = tm.genJSONRequest("torrent-get", "id, name, wanted, pieces");
         System.out.println(keres);
         //Response res = tm.postRequest("/transmission/rpc", keres);
         //System.out.println("Valasz kód: " + res.getHttpCode() + " Tartalom: " + res);
@@ -48,6 +52,22 @@ public class TestApp {
             System.out.println("      "+t.getTrackerStats());
             System.out.println("      "+t.getTrackers());
             System.out.println("      "+t.getTorrentFile());
+            /*BASE64Decoder dec = new BASE64Decoder();
+            byte[] b = dec.decodeBuffer(t.getPieces());
+            System.out.print("      Bytes: ("+b.length+") - "+StringUtils.newStringUtf8(b)+" -");
+            for(int i=0;i<b.length; i++){
+                //System.out.print("      "+ b[i]);
+                //System.out.print(fromByte(b[i]));
+                System.out.print(Integer.toBinaryString(b[i]));
+            }
+            System.out.println("      "+t.getPiecesNum());*/
+            System.out.println("      "+t.getPiecesStr());
+            //System.out.println("      "+t.getPriorities().length);
+            /*System.out.println("      Wanted len: "+t.getWanted().length);
+            for(int i=0;i<t.getWanted().length; i++){
+                System.out.print(t.getWanted()[i]);
+            }*/
+             System.out.println("");
         }
 
 
@@ -94,5 +114,16 @@ public class TestApp {
         
          hc.getConnectionManager().shutdown();
          */
+    }
+    
+    public static BitSet fromByte(byte b)
+    {
+        BitSet bits = new BitSet(8);
+        for (int i = 0; i < 8; i++)
+        {
+            bits.set(i, (b & 1) == 1);
+            b >>= 1;
+        }
+        return bits;
     }
 }

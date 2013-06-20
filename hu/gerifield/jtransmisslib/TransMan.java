@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Response;
+import org.apache.http.protocol.HTTP;
 
 //DOKSI: https://trac.transmissionbt.com/browser/trunk/extras/rpc-spec.txt
 /**
@@ -178,7 +179,8 @@ public class TransMan {
 
         HttpPost hp = new HttpPost(URL);
 
-        StringEntity ent = new StringEntity(request, "UTF-8");
+        //StringEntity ent = new StringEntity(request, "UTF-8");
+        StringEntity ent = new StringEntity(request, HTTP.UTF_8);
         hp.setEntity(ent);
 
         hp.addHeader("Authorization", "Basic " + authdata);
@@ -204,7 +206,8 @@ public class TransMan {
         if (respEnt != null) {
             String line;
             //Scanner sc = new Scanner(respent.getContent()).useDelimiter("\\A");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(respEnt.getContent()));
+            //BufferedReader reader = new BufferedReader(new InputStreamReader(respEnt.getContent()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(respEnt.getContent(), "UTF-8"));
             StringBuilder sb = new StringBuilder();
             while ((line = reader.readLine()) != null) {
                 sb.append(line);

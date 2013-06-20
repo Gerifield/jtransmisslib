@@ -5,8 +5,10 @@
 package hu.gerifield.jtransmisslib.gsonobj.gettorrent;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import sun.misc.BASE64Decoder;
 
 /**
  *
@@ -56,10 +58,10 @@ public class Torrent {
     private int peersGettingFromUs;
     private int peersSendingToUs;
     private double percentDone;
-    private String pieces; //ROSSZ
+    private String pieces; //BASE64 encode, -1 megvan, 0 - kell érték lehet még 2, 4.... de negatív előjel is beeshet... => BITEK számítanak elvileg
     private int pieceCount;
     private int pieceSize;
-    private int[] priorities; //ROSSZ
+    private int[] priorities;
     private int queuePosition;
     private int rateDownload;
     private int rateUpload;
@@ -81,7 +83,8 @@ public class Torrent {
     private int uploadLimit;
     private boolean uploadLimited;
     private double uploadRatio;
-    private boolean[] wanted; //ROSSZ
+    //private boolean[] wanted;
+    private int[] wanted; //1-esek
     private List<Webseed> webseeds = new LinkedList<>();
     private int webseedsSendingToUs;
 
@@ -998,14 +1001,14 @@ public class Torrent {
     /**
      * @return the wanted
      */
-    public boolean[] getWanted() {
+    public int[] getWanted() {
         return wanted;
     }
 
     /**
      * @param wanted the wanted to set
      */
-    public void setWanted(boolean[] wanted) {
+    public void setWanted(int[] wanted) {
         this.wanted = wanted;
     }
 
@@ -1036,4 +1039,36 @@ public class Torrent {
     public void setWebseedsSendingToUs(int webseedsSendingToUs) {
         this.webseedsSendingToUs = webseedsSendingToUs;
     }
+    
+    
+    public int getPiecesNum(){
+        if(getPieces() == null){
+            return -1;
+        }
+        BASE64Decoder dec = new BASE64Decoder();
+        try{
+            byte[] b = dec.decodeBuffer(getPieces());
+            return b.length;
+        }catch(IOException e){
+            return -1;
+        }
+    }
+    
+    public String getPiecesStr(){
+        if(getPieces() == null){
+            return null;
+        }
+        BASE64Decoder dec = new BASE64Decoder();
+        try{
+            byte[] b = dec.decodeBuffer(getPieces());
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < b.length; i++){
+                sb.append(Integer.toBinaryString(b[i]));
+            }
+            return sb.toString();
+        }catch(IOException e){
+            return null;
+        }
+    }
+    
 }
