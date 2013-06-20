@@ -5,8 +5,13 @@
 package hu.gerifield.jtransmisslib;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,9 +28,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Response;
 import org.apache.http.protocol.HTTP;
@@ -51,7 +54,9 @@ public class TransMan {
         String creds = user + ":" + pass;
         authdata = Base64.encodeBase64String(creds.getBytes());
     }
-
+    
+    /*
+     * REWRITE
     public String genJSONRequest(String method, String arguments) {
         try {
             JSONObject req = new JSONObject();
@@ -67,9 +72,46 @@ public class TransMan {
         } catch (JSONException e) {
             return null;
         }
+    }*/
+    public String genJSONRequest(String method, String field, String id) {
+        try {
+            JsonObject req = new JsonObject();
+            req.addProperty("method", method);
+            JsonObject arguments = new JsonObject();
+            
+            //FIELDS
+            Scanner sc = new Scanner(field).useDelimiter(", *");
+            //JsonObject args = new JsonObject();
+            JsonArray argsarray = new JsonArray();
+            while (sc.hasNext()) {
+                //args.append("fields", sc.next());
+                argsarray.add(new JsonPrimitive(sc.next()));
+            }
+            //req.add("arguments", fields);
+            arguments.add("fields", argsarray);
+            
+            
+            //IDS
+            if(id != null){
+                sc = new Scanner(id).useDelimiter(", *");
+                JsonArray idsarray = new JsonArray();
+                while (sc.hasNext()) {
+                    //args.append("fields", sc.next());
+                    idsarray.add(new JsonPrimitive(Integer.parseInt(sc.next())));
+                }
+                //req.add("arguments", idsarg);
+                arguments.add("ids", idsarray);
+            }
+            req.add("arguments", arguments);
+            
+
+            return req.toString();
+        } catch (JsonIOException e) {
+            return null;
+        }
     }
 
-    public ArrayList<HashMap<String, Object>> jsonResultToArray(String res) {
+    /*public ArrayList<HashMap<String, Object>> jsonResultToArray(String res) {
         try {
             JSONObject r = new JSONObject(res);
             if (r.get("result").equals("success")) {
@@ -103,7 +145,8 @@ public class TransMan {
             return null;
         }
     }
-
+    */
+/*
     public void parseResult(String res) {
         try {
             JSONObject r = new JSONObject(res);
@@ -136,7 +179,8 @@ public class TransMan {
             e.printStackTrace();
         }
     }
-
+*/
+    /*
     public void getTorrents() {
         JSONObject req = new JSONObject();
         try {
@@ -174,7 +218,7 @@ public class TransMan {
         }
 
     }
-    
+    */
     public Response postRequest(String URL, String request) throws IOException {
 
         HttpPost hp = new HttpPost(URL);
