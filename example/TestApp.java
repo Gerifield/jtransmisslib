@@ -4,8 +4,9 @@
  */
 package example;
 
-import hu.gerifield.jtransmisslib.Response;
 import hu.gerifield.jtransmisslib.TransMan;
+import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Response;
+import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Torrent;
 import java.util.Scanner;
 
 /**
@@ -33,12 +34,21 @@ public class TestApp {
         //System.out.println(res);
 
         //tm.getTorrents();
-        String keres = tm.genJSONRequest("torrent-get", "id, name,peers");
+        String keres = tm.genJSONRequest("torrent-get", "id, name, peers,trackerStats");
         System.out.println(keres);
-        Response res = tm.postRequest("/transmission/rpc", keres);
-        System.out.println("Valasz kód: " + res.getHttpCode() + " Tartalom: " + res);
+        //Response res = tm.postRequest("/transmission/rpc", keres);
+        //System.out.println("Valasz kód: " + res.getHttpCode() + " Tartalom: " + res);
         //tm.parseResult(res);
-        System.out.println("Parsolt: " + tm.jsonResultToArray(res.getResult()));
+        //System.out.println("Parsolt: " + tm.jsonResultToArray(res.getResult()));
+        Response r = tm.postRequest("/transmission/rpc", keres);
+        System.out.println("Res: "+r);
+        System.out.println(r.getResult()+" - "+r.getArguments().getTorrents().size());
+        for(Torrent t : r.getArguments().getTorrents()){
+            System.out.println("   "+t.getId()+" - "+t.getName());
+            System.out.println("      "+t.getTrackerStats());
+            System.out.println("      "+t.getTrackers());
+            System.out.println("      "+t.getTorrentFile());
+        }
 
 
 

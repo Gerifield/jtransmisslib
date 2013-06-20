@@ -27,7 +27,8 @@ public class TrackerStat {
     private int lastScrapeStartTime;
     private boolean lastScrapeSucceeded;
     private int lastScrapeTime;
-    private boolean lastScrapeTimedOut;
+    //private boolean lastScrapeTimedOut;
+    private int lastScrapeTimedOut;
     private int leecherCount;
     private int nextAnnounceTime;
     private int nextScrapeTime;
@@ -291,14 +292,14 @@ public class TrackerStat {
     /**
      * @return the lastScrapeTimedOut
      */
-    public boolean isLastScrapeTimedOut() {
+    public int isLastScrapeTimedOut() {
         return lastScrapeTimedOut;
     }
 
     /**
      * @param lastScrapeTimedOut the lastScrapeTimedOut to set
      */
-    public void setLastScrapeTimedOut(boolean lastScrapeTimedOut) {
+    public void setLastScrapeTimedOut(int lastScrapeTimedOut) {
         this.lastScrapeTimedOut = lastScrapeTimedOut;
     }
 

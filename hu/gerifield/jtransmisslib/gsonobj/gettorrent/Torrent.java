@@ -56,10 +56,10 @@ public class Torrent {
     private int peersGettingFromUs;
     private int peersSendingToUs;
     private double percentDone;
-    private String pieces;
+    private String pieces; //ROSSZ
     private int pieceCount;
     private int pieceSize;
-    private int[] priorities;
+    private int[] priorities; //ROSSZ
     private int queuePosition;
     private int rateDownload;
     private int rateUpload;
@@ -81,7 +81,7 @@ public class Torrent {
     private int uploadLimit;
     private boolean uploadLimited;
     private double uploadRatio;
-    private boolean[] wanted;
+    private boolean[] wanted; //ROSSZ
     private List<Webseed> webseeds = new LinkedList<>();
     private int webseedsSendingToUs;
 
