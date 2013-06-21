@@ -73,6 +73,17 @@ public class TransMan {
             return null;
         }
     }*/
+    
+    public Response getTorrents(String field, String id){
+        String get = genJSONRequest("torrent-get", field, id);
+        try{
+            Response r = postRequest("/transmission/rpc", get);
+            return r;
+        }catch(IOException e){
+            return null;
+        }
+    }
+    
     public String genJSONRequest(String method, String field, String id) {
         try {
             JsonObject req = new JsonObject();

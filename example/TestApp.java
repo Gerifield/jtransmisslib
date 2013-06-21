@@ -37,15 +37,18 @@ public class TestApp {
         //tm.getTorrents();
         //String keres = tm.genJSONRequest("torrent-get", "id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted");
         //String keres = tm.genJSONRequest("torrent-get", "id, name, wanted, pieces", null);
-        String keres = tm.genJSONRequest("torrent-get", "id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted", null);
-        System.out.println(keres);
+        
+        //String keres = tm.genJSONRequest("torrent-get", "id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted", null);
+        //System.out.println(keres);
+        
         //Response res = tm.postRequest("/transmission/rpc", keres);
         //System.out.println("Valasz kód: " + res.getHttpCode() + " Tartalom: " + res);
         //tm.parseResult(res);
         //System.out.println("Parsolt: " + tm.jsonResultToArray(res.getResult()));
         
         
-        Response r = tm.postRequest("/transmission/rpc", keres);
+        //Response r = tm.postRequest("/transmission/rpc", keres);
+        Response r = tm.getTorrents("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted", null);
         System.out.println("Res: "+r);
         System.out.println(r.getResult()+" - "+r.getArguments().getTorrents().size());
         for(Torrent t : r.getArguments().getTorrents()){
