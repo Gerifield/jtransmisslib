@@ -10,9 +10,9 @@ package hu.gerifield.jtransmisslib.gsonobj.gettorrent;
  */
 public class Tracker {
     private String announce;
-    private int id;
+    private Integer id;
     private String scrape;
-    private int tier;
+    private Integer tier;
 
     /**
      * @return the announce
@@ -31,14 +31,14 @@ public class Tracker {
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -59,14 +59,14 @@ public class Tracker {
     /**
      * @return the tier
      */
-    public int getTier() {
+    public Integer getTier() {
         return tier;
     }
 
     /**
      * @param tier the tier to set
      */
-    public void setTier(int tier) {
+    public void setTier(Integer tier) {
         this.tier = tier;
     }
     

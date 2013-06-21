@@ -11,7 +11,7 @@ package hu.gerifield.jtransmisslib.gsonobj.gettorrent;
  */
 public class Response {
     private String result;
-    private int tag;
+    private Integer tag;
     private Arguments arguments;
 
     /**
@@ -31,14 +31,14 @@ public class Response {
     /**
      * @return the tag
      */
-    public int getTag() {
+    public Integer getTag() {
         return tag;
     }
 
     /**
      * @param tag the tag to set
      */
-    public void setTag(int tag) {
+    public void setTag(Integer tag) {
         this.tag = tag;
     }
 

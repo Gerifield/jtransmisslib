@@ -21,10 +21,10 @@ public class Peer {
     private boolean isUTP;
     private boolean peerIsChoked;
     private boolean peerIsInterested;
-    private int port;
+    private Integer port;
     private double progress;
-    private int rateToClient;
-    private int rateToPeer;
+    private Integer rateToClient;
+    private Integer rateToPeer;
 
     /**
      * @return the address
@@ -197,14 +197,14 @@ public class Peer {
     /**
      * @return the port
      */
-    public int getPort() {
+    public Integer getPort() {
         return port;
     }
 
     /**
      * @param port the port to set
      */
-    public void setPort(int port) {
+    public void setPort(Integer port) {
         this.port = port;
     }
 
@@ -225,28 +225,28 @@ public class Peer {
     /**
      * @return the rateToClient
      */
-    public int getRateToClient() {
+    public Integer getRateToClient() {
         return rateToClient;
     }
 
     /**
      * @param rateToClient the rateToClient to set
      */
-    public void setRateToClient(int rateToClient) {
+    public void setRateToClient(Integer rateToClient) {
         this.rateToClient = rateToClient;
     }
 
     /**
      * @return the rateToPeer
      */
-    public int getRateToPeer() {
+    public Integer getRateToPeer() {
         return rateToPeer;
     }
 
     /**
      * @param rateToPeer the rateToPeer to set
      */
-    public void setRateToPeer(int rateToPeer) {
+    public void setRateToPeer(Integer rateToPeer) {
         this.rateToPeer = rateToPeer;
     }
 }

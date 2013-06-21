@@ -9,21 +9,21 @@ package hu.gerifield.jtransmisslib.gsonobj.gettorrent;
  * @author Gergely
  */
 public class FileDataStats {
-    private int bytesCompleted;
+    private Integer bytesCompleted;
     private boolean wanted;
-    private int priority;
+    private Integer priority;
 
     /**
      * @return the bytesCompleted
      */
-    public int getBytesCompleted() {
+    public Integer getBytesCompleted() {
         return bytesCompleted;
     }
 
     /**
      * @param bytesCompleted the bytesCompleted to set
      */
-    public void setBytesCompleted(int bytesCompleted) {
+    public void setBytesCompleted(Integer bytesCompleted) {
         this.bytesCompleted = bytesCompleted;
     }
 
@@ -44,14 +44,14 @@ public class FileDataStats {
     /**
      * @return the priority
      */
-    public int getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
     /**
      * @param priority the priority to set
      */
-    public void setPriority(int priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
     

@@ -10,32 +10,32 @@ package hu.gerifield.jtransmisslib.gsonobj.gettorrent;
  */
 public class TrackerStat {
     private String announce;
-    private int announceState;
-    private int downloadCount;
+    private Integer announceState;
+    private Integer downloadCount;
     private boolean hasAnnounced;
     private boolean hasScraped;
     private String host;
-    private int id;
+    private Integer id;
     private boolean isBackup;
-    private int lastAnnouncePeerCount;
+    private Integer lastAnnouncePeerCount;
     private String lastAnnounceResult;
-    private int lastAnnounceStartTime;
+    private Integer lastAnnounceStartTime;
     private boolean lastAnnounceSucceeded;
-    private int lastAnnounceTime;
+    private Integer lastAnnounceTime;
     private boolean lastAnnounceTimedOut;
     private String lastScrapeResult;
-    private int lastScrapeStartTime;
+    private Integer lastScrapeStartTime;
     private boolean lastScrapeSucceeded;
-    private int lastScrapeTime;
+    private Integer lastScrapeTime;
     //private boolean lastScrapeTimedOut;
-    private int lastScrapeTimedOut;
-    private int leecherCount;
-    private int nextAnnounceTime;
-    private int nextScrapeTime;
+    private Integer lastScrapeTimedOut;
+    private Integer leecherCount;
+    private Integer nextAnnounceTime;
+    private Integer nextScrapeTime;
     private String scrape;
-    private int scrapeState;
-    private int seederCount;
-    private int tier;
+    private Integer scrapeState;
+    private Integer seederCount;
+    private Integer tier;
 
     /**
      * @return the announce
@@ -54,28 +54,28 @@ public class TrackerStat {
     /**
      * @return the announceState
      */
-    public int getAnnounceState() {
+    public Integer getAnnounceState() {
         return announceState;
     }
 
     /**
      * @param announceState the announceState to set
      */
-    public void setAnnounceState(int announceState) {
+    public void setAnnounceState(Integer announceState) {
         this.announceState = announceState;
     }
 
     /**
      * @return the downloadCount
      */
-    public int getDownloadCount() {
+    public Integer getDownloadCount() {
         return downloadCount;
     }
 
     /**
      * @param downloadCount the downloadCount to set
      */
-    public void setDownloadCount(int downloadCount) {
+    public void setDownloadCount(Integer downloadCount) {
         this.downloadCount = downloadCount;
     }
 
@@ -124,14 +124,14 @@ public class TrackerStat {
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -152,14 +152,14 @@ public class TrackerStat {
     /**
      * @return the lastAnnouncePeerCount
      */
-    public int getLastAnnouncePeerCount() {
+    public Integer getLastAnnouncePeerCount() {
         return lastAnnouncePeerCount;
     }
 
     /**
      * @param lastAnnouncePeerCount the lastAnnouncePeerCount to set
      */
-    public void setLastAnnouncePeerCount(int lastAnnouncePeerCount) {
+    public void setLastAnnouncePeerCount(Integer lastAnnouncePeerCount) {
         this.lastAnnouncePeerCount = lastAnnouncePeerCount;
     }
 
@@ -180,14 +180,14 @@ public class TrackerStat {
     /**
      * @return the lastAnnounceStartTime
      */
-    public int getLastAnnounceStartTime() {
+    public Integer getLastAnnounceStartTime() {
         return lastAnnounceStartTime;
     }
 
     /**
      * @param lastAnnounceStartTime the lastAnnounceStartTime to set
      */
-    public void setLastAnnounceStartTime(int lastAnnounceStartTime) {
+    public void setLastAnnounceStartTime(Integer lastAnnounceStartTime) {
         this.lastAnnounceStartTime = lastAnnounceStartTime;
     }
 
@@ -208,14 +208,14 @@ public class TrackerStat {
     /**
      * @return the lastAnnounceTime
      */
-    public int getLastAnnounceTime() {
+    public Integer getLastAnnounceTime() {
         return lastAnnounceTime;
     }
 
     /**
      * @param lastAnnounceTime the lastAnnounceTime to set
      */
-    public void setLastAnnounceTime(int lastAnnounceTime) {
+    public void setLastAnnounceTime(Integer lastAnnounceTime) {
         this.lastAnnounceTime = lastAnnounceTime;
     }
 
@@ -250,14 +250,14 @@ public class TrackerStat {
     /**
      * @return the lastScrapeStartTime
      */
-    public int getLastScrapeStartTime() {
+    public Integer getLastScrapeStartTime() {
         return lastScrapeStartTime;
     }
 
     /**
      * @param lastScrapeStartTime the lastScrapeStartTime to set
      */
-    public void setLastScrapeStartTime(int lastScrapeStartTime) {
+    public void setLastScrapeStartTime(Integer lastScrapeStartTime) {
         this.lastScrapeStartTime = lastScrapeStartTime;
     }
 
@@ -278,70 +278,70 @@ public class TrackerStat {
     /**
      * @return the lastScrapeTime
      */
-    public int getLastScrapeTime() {
+    public Integer getLastScrapeTime() {
         return lastScrapeTime;
     }
 
     /**
      * @param lastScrapeTime the lastScrapeTime to set
      */
-    public void setLastScrapeTime(int lastScrapeTime) {
+    public void setLastScrapeTime(Integer lastScrapeTime) {
         this.lastScrapeTime = lastScrapeTime;
     }
 
     /**
      * @return the lastScrapeTimedOut
      */
-    public int isLastScrapeTimedOut() {
+    public Integer isLastScrapeTimedOut() {
         return lastScrapeTimedOut;
     }
 
     /**
      * @param lastScrapeTimedOut the lastScrapeTimedOut to set
      */
-    public void setLastScrapeTimedOut(int lastScrapeTimedOut) {
+    public void setLastScrapeTimedOut(Integer lastScrapeTimedOut) {
         this.lastScrapeTimedOut = lastScrapeTimedOut;
     }
 
     /**
      * @return the leecherCount
      */
-    public int getLeecherCount() {
+    public Integer getLeecherCount() {
         return leecherCount;
     }
 
     /**
      * @param leecherCount the leecherCount to set
      */
-    public void setLeecherCount(int leecherCount) {
+    public void setLeecherCount(Integer leecherCount) {
         this.leecherCount = leecherCount;
     }
 
     /**
      * @return the nextAnnounceTime
      */
-    public int getNextAnnounceTime() {
+    public Integer getNextAnnounceTime() {
         return nextAnnounceTime;
     }
 
     /**
      * @param nextAnnounceTime the nextAnnounceTime to set
      */
-    public void setNextAnnounceTime(int nextAnnounceTime) {
+    public void setNextAnnounceTime(Integer nextAnnounceTime) {
         this.nextAnnounceTime = nextAnnounceTime;
     }
 
     /**
      * @return the nextScrapeTime
      */
-    public int getNextScrapeTime() {
+    public Integer getNextScrapeTime() {
         return nextScrapeTime;
     }
 
     /**
      * @param nextScrapeTime the nextScrapeTime to set
      */
-    public void setNextScrapeTime(int nextScrapeTime) {
+    public void setNextScrapeTime(Integer nextScrapeTime) {
         this.nextScrapeTime = nextScrapeTime;
     }
 
@@ -362,42 +362,42 @@ public class TrackerStat {
     /**
      * @return the scrapeState
      */
-    public int getScrapeState() {
+    public Integer getScrapeState() {
         return scrapeState;
     }
 
     /**
      * @param scrapeState the scrapeState to set
      */
-    public void setScrapeState(int scrapeState) {
+    public void setScrapeState(Integer scrapeState) {
         this.scrapeState = scrapeState;
     }
 
     /**
      * @return the seederCount
      */
-    public int getSeederCount() {
+    public Integer getSeederCount() {
         return seederCount;
     }
 
     /**
      * @param seederCount the seederCount to set
      */
-    public void setSeederCount(int seederCount) {
+    public void setSeederCount(Integer seederCount) {
         this.seederCount = seederCount;
     }
 
     /**
      * @return the tier
      */
-    public int getTier() {
+    public Integer getTier() {
         return tier;
     }
 
     /**
      * @param tier the tier to set
      */
-    public void setTier(int tier) {
+    public void setTier(Integer tier) {
         this.tier = tier;
     }
 }

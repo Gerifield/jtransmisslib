@@ -15,118 +15,118 @@ import sun.misc.BASE64Decoder;
  * @author Gergely
  */
 public class Torrent {
-    private int activityDate;
-    private int addedDate;
-    private int bandwidthPriority;
+    private Integer activityDate;
+    private Integer addedDate;
+    private Integer bandwidthPriority;
     private String comment;
-    private int corruptEver;
+    private Integer corruptEver;
     private String creator;
-    private int dateCreated;
-    private int desiredAvailable;
-    private int doneDate;
+    private Integer dateCreated;
+    private Integer desiredAvailable;
+    private Integer doneDate;
     private String downloadDir;
-    private int downloadedEver;
-    private int downloadLimit;
+    private Integer downloadedEver;
+    private Integer downloadLimit;
     private boolean downloadLimited;
-    private int error;
+    private Integer error;
     private String errorString;
-    private int eta;
-    private int etaIdle;
+    private Integer eta;
+    private Integer etaIdle;
     private List<FileData> files = new LinkedList<>();
     private List<FileDataStats> fileStats = new LinkedList<>();
     private String hashString;
-    private int haveUnchecked;
-    private int haveValid;
+    private Integer haveUnchecked;
+    private Integer haveValid;
     private boolean honorsSessionLimits;
-    private int id;
+    private Integer id;
     private boolean isFinished;
     private boolean isPrivate;
     private boolean isStalledd;
-    private int leftUntilDone;
-    private int magnetLink;
-    private int manualAnnounceTime;
-    private int maxConnectedPeers;
+    private Integer leftUntilDone;
+    private Integer magnetLink;
+    private Integer manualAnnounceTime;
+    private Integer maxConnectedPeers;
     private double metadataPercentComplete;
     private String name;
     
     @SerializedName("peer-limit")
-    private int peer_limit;
+    private Integer peer_limit;
     
     private List<Peer> peers = new LinkedList<>();
-    private int peersConnected;
+    private Integer peersConnected;
     private PeerFrom peersFrom;
-    private int peersGettingFromUs;
-    private int peersSendingToUs;
+    private Integer peersGettingFromUs;
+    private Integer peersSendingToUs;
     private double percentDone;
     private String pieces; //BASE64 encode, -1 megvan, 0 - kell érték lehet még 2, 4.... de negatív előjel is beeshet... => BITEK számítanak elvileg
-    private int pieceCount;
-    private int pieceSize;
-    private int[] priorities;
-    private int queuePosition;
-    private int rateDownload;
-    private int rateUpload;
+    private Integer pieceCount;
+    private Integer pieceSize;
+    private Integer[] priorities;
+    private Integer queuePosition;
+    private Integer rateDownload;
+    private Integer rateUpload;
     private double recheckProgress;
-    private int secondsDownloading;
-    private int secondsSeeding;
-    private int seedIdleLimit;
-    private int seedIdleMode;
+    private Integer secondsDownloading;
+    private Integer secondsSeeding;
+    private Integer seedIdleLimit;
+    private Integer seedIdleMode;
     private double seedRatioLimit;
-    private int seedRatioMode;
-    private int sizeWhenDone;
-    private int startDate;
-    private int status;
+    private Integer seedRatioMode;
+    private Integer sizeWhenDone;
+    private Integer startDate;
+    private Integer status;
     private List<Tracker> trackers = new LinkedList<>();
     private List<TrackerStat> trackerStats = new LinkedList<>();
-    private int totalSize;
+    private Integer totalSize;
     private String torrentFile;
-    private int uploadedEver;
-    private int uploadLimit;
+    private Integer uploadedEver;
+    private Integer uploadLimit;
     private boolean uploadLimited;
     private double uploadRatio;
     //private boolean[] wanted;
-    private int[] wanted; //1-esek
+    private Integer[] wanted; //1-esek
     private List<Webseed> webseeds = new LinkedList<>();
-    private int webseedsSendingToUs;
+    private Integer webseedsSendingToUs;
 
     /**
      * @return the activityDate
      */
-    public int getActivityDate() {
+    public Integer getActivityDate() {
         return activityDate;
     }
 
     /**
      * @param activityDate the activityDate to set
      */
-    public void setActivityDate(int activityDate) {
+    public void setActivityDate(Integer activityDate) {
         this.activityDate = activityDate;
     }
 
     /**
      * @return the addedDate
      */
-    public int getAddedDate() {
+    public Integer getAddedDate() {
         return addedDate;
     }
 
     /**
      * @param addedDate the addedDate to set
      */
-    public void setAddedDate(int addedDate) {
+    public void setAddedDate(Integer addedDate) {
         this.addedDate = addedDate;
     }
 
     /**
      * @return the bandwidthPriority
      */
-    public int getBandwidthPriority() {
+    public Integer getBandwidthPriority() {
         return bandwidthPriority;
     }
 
     /**
      * @param bandwidthPriority the bandwidthPriority to set
      */
-    public void setBandwidthPriority(int bandwidthPriority) {
+    public void setBandwidthPriority(Integer bandwidthPriority) {
         this.bandwidthPriority = bandwidthPriority;
     }
 
@@ -147,14 +147,14 @@ public class Torrent {
     /**
      * @return the corruptEver
      */
-    public int getCorruptEver() {
+    public Integer getCorruptEver() {
         return corruptEver;
     }
 
     /**
      * @param corruptEver the corruptEver to set
      */
-    public void setCorruptEver(int corruptEver) {
+    public void setCorruptEver(Integer corruptEver) {
         this.corruptEver = corruptEver;
     }
 
@@ -175,42 +175,42 @@ public class Torrent {
     /**
      * @return the dateCreated
      */
-    public int getDateCreated() {
+    public Integer getDateCreated() {
         return dateCreated;
     }
 
     /**
      * @param dateCreated the dateCreated to set
      */
-    public void setDateCreated(int dateCreated) {
+    public void setDateCreated(Integer dateCreated) {
         this.dateCreated = dateCreated;
     }
 
     /**
      * @return the desiredAvailable
      */
-    public int getDesiredAvailable() {
+    public Integer getDesiredAvailable() {
         return desiredAvailable;
     }
 
     /**
      * @param desiredAvailable the desiredAvailable to set
      */
-    public void setDesiredAvailable(int desiredAvailable) {
+    public void setDesiredAvailable(Integer desiredAvailable) {
         this.desiredAvailable = desiredAvailable;
     }
 
     /**
      * @return the doneDate
      */
-    public int getDoneDate() {
+    public Integer getDoneDate() {
         return doneDate;
     }
 
     /**
      * @param doneDate the doneDate to set
      */
-    public void setDoneDate(int doneDate) {
+    public void setDoneDate(Integer doneDate) {
         this.doneDate = doneDate;
     }
 
@@ -231,28 +231,28 @@ public class Torrent {
     /**
      * @return the downloadedEver
      */
-    public int getDownloadedEver() {
+    public Integer getDownloadedEver() {
         return downloadedEver;
     }
 
     /**
      * @param downloadedEver the downloadedEver to set
      */
-    public void setDownloadedEver(int downloadedEver) {
+    public void setDownloadedEver(Integer downloadedEver) {
         this.downloadedEver = downloadedEver;
     }
 
     /**
      * @return the downloadLimit
      */
-    public int getDownloadLimit() {
+    public Integer getDownloadLimit() {
         return downloadLimit;
     }
 
     /**
      * @param downloadLimit the downloadLimit to set
      */
-    public void setDownloadLimit(int downloadLimit) {
+    public void setDownloadLimit(Integer downloadLimit) {
         this.downloadLimit = downloadLimit;
     }
 
@@ -273,14 +273,14 @@ public class Torrent {
     /**
      * @return the error
      */
-    public int getError() {
+    public Integer getError() {
         return error;
     }
 
     /**
      * @param error the error to set
      */
-    public void setError(int error) {
+    public void setError(Integer error) {
         this.error = error;
     }
 
@@ -301,28 +301,28 @@ public class Torrent {
     /**
      * @return the eta
      */
-    public int getEta() {
+    public Integer getEta() {
         return eta;
     }
 
     /**
      * @param eta the eta to set
      */
-    public void setEta(int eta) {
+    public void setEta(Integer eta) {
         this.eta = eta;
     }
 
     /**
      * @return the etaIdle
      */
-    public int getEtaIdle() {
+    public Integer getEtaIdle() {
         return etaIdle;
     }
 
     /**
      * @param etaIdle the etaIdle to set
      */
-    public void setEtaIdle(int etaIdle) {
+    public void setEtaIdle(Integer etaIdle) {
         this.etaIdle = etaIdle;
     }
 
@@ -371,28 +371,28 @@ public class Torrent {
     /**
      * @return the haveUnchecked
      */
-    public int getHaveUnchecked() {
+    public Integer getHaveUnchecked() {
         return haveUnchecked;
     }
 
     /**
      * @param haveUnchecked the haveUnchecked to set
      */
-    public void setHaveUnchecked(int haveUnchecked) {
+    public void setHaveUnchecked(Integer haveUnchecked) {
         this.haveUnchecked = haveUnchecked;
     }
 
     /**
      * @return the haveValid
      */
-    public int getHaveValid() {
+    public Integer getHaveValid() {
         return haveValid;
     }
 
     /**
      * @param haveValid the haveValid to set
      */
-    public void setHaveValid(int haveValid) {
+    public void setHaveValid(Integer haveValid) {
         this.haveValid = haveValid;
     }
 
@@ -413,14 +413,14 @@ public class Torrent {
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -469,56 +469,56 @@ public class Torrent {
     /**
      * @return the leftUntilDone
      */
-    public int getLeftUntilDone() {
+    public Integer getLeftUntilDone() {
         return leftUntilDone;
     }
 
     /**
      * @param leftUntilDone the leftUntilDone to set
      */
-    public void setLeftUntilDone(int leftUntilDone) {
+    public void setLeftUntilDone(Integer leftUntilDone) {
         this.leftUntilDone = leftUntilDone;
     }
 
     /**
      * @return the magnetLink
      */
-    public int getMagnetLink() {
+    public Integer getMagnetLink() {
         return magnetLink;
     }
 
     /**
      * @param magnetLink the magnetLink to set
      */
-    public void setMagnetLink(int magnetLink) {
+    public void setMagnetLink(Integer magnetLink) {
         this.magnetLink = magnetLink;
     }
 
     /**
      * @return the manualAnnounceTime
      */
-    public int getManualAnnounceTime() {
+    public Integer getManualAnnounceTime() {
         return manualAnnounceTime;
     }
 
     /**
      * @param manualAnnounceTime the manualAnnounceTime to set
      */
-    public void setManualAnnounceTime(int manualAnnounceTime) {
+    public void setManualAnnounceTime(Integer manualAnnounceTime) {
         this.manualAnnounceTime = manualAnnounceTime;
     }
 
     /**
      * @return the maxConnectedPeers
      */
-    public int getMaxConnectedPeers() {
+    public Integer getMaxConnectedPeers() {
         return maxConnectedPeers;
     }
 
     /**
      * @param maxConnectedPeers the maxConnectedPeers to set
      */
-    public void setMaxConnectedPeers(int maxConnectedPeers) {
+    public void setMaxConnectedPeers(Integer maxConnectedPeers) {
         this.maxConnectedPeers = maxConnectedPeers;
     }
 
@@ -553,14 +553,14 @@ public class Torrent {
     /**
      * @return the peer_limit
      */
-    public int getPeer_limit() {
+    public Integer getPeer_limit() {
         return peer_limit;
     }
 
     /**
      * @param peer_limit the peer_limit to set
      */
-    public void setPeer_limit(int peer_limit) {
+    public void setPeer_limit(Integer peer_limit) {
         this.peer_limit = peer_limit;
     }
 
@@ -581,14 +581,14 @@ public class Torrent {
     /**
      * @return the peersConnected
      */
-    public int getPeersConnected() {
+    public Integer getPeersConnected() {
         return peersConnected;
     }
 
     /**
      * @param peersConnected the peersConnected to set
      */
-    public void setPeersConnected(int peersConnected) {
+    public void setPeersConnected(Integer peersConnected) {
         this.peersConnected = peersConnected;
     }
 
@@ -609,28 +609,28 @@ public class Torrent {
     /**
      * @return the peersGettingFromUs
      */
-    public int getPeersGettingFromUs() {
+    public Integer getPeersGettingFromUs() {
         return peersGettingFromUs;
     }
 
     /**
      * @param peersGettingFromUs the peersGettingFromUs to set
      */
-    public void setPeersGettingFromUs(int peersGettingFromUs) {
+    public void setPeersGettingFromUs(Integer peersGettingFromUs) {
         this.peersGettingFromUs = peersGettingFromUs;
     }
 
     /**
      * @return the peersSendingToUs
      */
-    public int getPeersSendingToUs() {
+    public Integer getPeersSendingToUs() {
         return peersSendingToUs;
     }
 
     /**
      * @param peersSendingToUs the peersSendingToUs to set
      */
-    public void setPeersSendingToUs(int peersSendingToUs) {
+    public void setPeersSendingToUs(Integer peersSendingToUs) {
         this.peersSendingToUs = peersSendingToUs;
     }
 
@@ -665,84 +665,84 @@ public class Torrent {
     /**
      * @return the pieceCount
      */
-    public int getPieceCount() {
+    public Integer getPieceCount() {
         return pieceCount;
     }
 
     /**
      * @param pieceCount the pieceCount to set
      */
-    public void setPieceCount(int pieceCount) {
+    public void setPieceCount(Integer pieceCount) {
         this.pieceCount = pieceCount;
     }
 
     /**
      * @return the pieceSize
      */
-    public int getPieceSize() {
+    public Integer getPieceSize() {
         return pieceSize;
     }
 
     /**
      * @param pieceSize the pieceSize to set
      */
-    public void setPieceSize(int pieceSize) {
+    public void setPieceSize(Integer pieceSize) {
         this.pieceSize = pieceSize;
     }
 
     /**
      * @return the priorities
      */
-    public int[] getPriorities() {
+    public Integer[] getPriorities() {
         return priorities;
     }
 
     /**
      * @param priorities the priorities to set
      */
-    public void setPriorities(int[] priorities) {
+    public void setPriorities(Integer[] priorities) {
         this.priorities = priorities;
     }
 
     /**
      * @return the queuePosition
      */
-    public int getQueuePosition() {
+    public Integer getQueuePosition() {
         return queuePosition;
     }
 
     /**
      * @param queuePosition the queuePosition to set
      */
-    public void setQueuePosition(int queuePosition) {
+    public void setQueuePosition(Integer queuePosition) {
         this.queuePosition = queuePosition;
     }
 
     /**
      * @return the rateDownload
      */
-    public int getRateDownload() {
+    public Integer getRateDownload() {
         return rateDownload;
     }
 
     /**
      * @param rateDownload the rateDownload to set
      */
-    public void setRateDownload(int rateDownload) {
+    public void setRateDownload(Integer rateDownload) {
         this.rateDownload = rateDownload;
     }
 
     /**
      * @return the rateUpload
      */
-    public int getRateUpload() {
+    public Integer getRateUpload() {
         return rateUpload;
     }
 
     /**
      * @param rateUpload the rateUpload to set
      */
-    public void setRateUpload(int rateUpload) {
+    public void setRateUpload(Integer rateUpload) {
         this.rateUpload = rateUpload;
     }
 
@@ -763,56 +763,56 @@ public class Torrent {
     /**
      * @return the secondsDownloading
      */
-    public int getSecondsDownloading() {
+    public Integer getSecondsDownloading() {
         return secondsDownloading;
     }
 
     /**
      * @param secondsDownloading the secondsDownloading to set
      */
-    public void setSecondsDownloading(int secondsDownloading) {
+    public void setSecondsDownloading(Integer secondsDownloading) {
         this.secondsDownloading = secondsDownloading;
     }
 
     /**
      * @return the secondsSeeding
      */
-    public int getSecondsSeeding() {
+    public Integer getSecondsSeeding() {
         return secondsSeeding;
     }
 
     /**
      * @param secondsSeeding the secondsSeeding to set
      */
-    public void setSecondsSeeding(int secondsSeeding) {
+    public void setSecondsSeeding(Integer secondsSeeding) {
         this.secondsSeeding = secondsSeeding;
     }
 
     /**
      * @return the seedIdleLimit
      */
-    public int getSeedIdleLimit() {
+    public Integer getSeedIdleLimit() {
         return seedIdleLimit;
     }
 
     /**
      * @param seedIdleLimit the seedIdleLimit to set
      */
-    public void setSeedIdleLimit(int seedIdleLimit) {
+    public void setSeedIdleLimit(Integer seedIdleLimit) {
         this.seedIdleLimit = seedIdleLimit;
     }
 
     /**
      * @return the seedIdleMode
      */
-    public int getSeedIdleMode() {
+    public Integer getSeedIdleMode() {
         return seedIdleMode;
     }
 
     /**
      * @param seedIdleMode the seedIdleMode to set
      */
-    public void setSeedIdleMode(int seedIdleMode) {
+    public void setSeedIdleMode(Integer seedIdleMode) {
         this.seedIdleMode = seedIdleMode;
     }
 
@@ -833,56 +833,56 @@ public class Torrent {
     /**
      * @return the seedRatioMode
      */
-    public int getSeedRatioMode() {
+    public Integer getSeedRatioMode() {
         return seedRatioMode;
     }
 
     /**
      * @param seedRatioMode the seedRatioMode to set
      */
-    public void setSeedRatioMode(int seedRatioMode) {
+    public void setSeedRatioMode(Integer seedRatioMode) {
         this.seedRatioMode = seedRatioMode;
     }
 
     /**
      * @return the sizeWhenDone
      */
-    public int getSizeWhenDone() {
+    public Integer getSizeWhenDone() {
         return sizeWhenDone;
     }
 
     /**
      * @param sizeWhenDone the sizeWhenDone to set
      */
-    public void setSizeWhenDone(int sizeWhenDone) {
+    public void setSizeWhenDone(Integer sizeWhenDone) {
         this.sizeWhenDone = sizeWhenDone;
     }
 
     /**
      * @return the startDate
      */
-    public int getStartDate() {
+    public Integer getStartDate() {
         return startDate;
     }
 
     /**
      * @param startDate the startDate to set
      */
-    public void setStartDate(int startDate) {
+    public void setStartDate(Integer startDate) {
         this.startDate = startDate;
     }
 
     /**
      * @return the status
      */
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -917,14 +917,14 @@ public class Torrent {
     /**
      * @return the totalSize
      */
-    public int getTotalSize() {
+    public Integer getTotalSize() {
         return totalSize;
     }
 
     /**
      * @param totalSize the totalSize to set
      */
-    public void setTotalSize(int totalSize) {
+    public void setTotalSize(Integer totalSize) {
         this.totalSize = totalSize;
     }
 
@@ -945,28 +945,28 @@ public class Torrent {
     /**
      * @return the uploadedEver
      */
-    public int getUploadedEver() {
+    public Integer getUploadedEver() {
         return uploadedEver;
     }
 
     /**
      * @param uploadedEver the uploadedEver to set
      */
-    public void setUploadedEver(int uploadedEver) {
+    public void setUploadedEver(Integer uploadedEver) {
         this.uploadedEver = uploadedEver;
     }
 
     /**
      * @return the uploadLimit
      */
-    public int getUploadLimit() {
+    public Integer getUploadLimit() {
         return uploadLimit;
     }
 
     /**
      * @param uploadLimit the uploadLimit to set
      */
-    public void setUploadLimit(int uploadLimit) {
+    public void setUploadLimit(Integer uploadLimit) {
         this.uploadLimit = uploadLimit;
     }
 
@@ -1001,14 +1001,14 @@ public class Torrent {
     /**
      * @return the wanted
      */
-    public int[] getWanted() {
+    public Integer[] getWanted() {
         return wanted;
     }
 
     /**
      * @param wanted the wanted to set
      */
-    public void setWanted(int[] wanted) {
+    public void setWanted(Integer[] wanted) {
         this.wanted = wanted;
     }
 
@@ -1029,14 +1029,14 @@ public class Torrent {
     /**
      * @return the webseedsSendingToUs
      */
-    public int getWebseedsSendingToUs() {
+    public Integer getWebseedsSendingToUs() {
         return webseedsSendingToUs;
     }
 
     /**
      * @param webseedsSendingToUs the webseedsSendingToUs to set
      */
-    public void setWebseedsSendingToUs(int webseedsSendingToUs) {
+    public void setWebseedsSendingToUs(Integer webseedsSendingToUs) {
         this.webseedsSendingToUs = webseedsSendingToUs;
     }
     
