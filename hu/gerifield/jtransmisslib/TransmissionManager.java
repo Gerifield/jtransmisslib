@@ -5,12 +5,14 @@
 package hu.gerifield.jtransmisslib;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Response;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -40,6 +42,36 @@ public class TransmissionManager {
         authdata = Base64.encodeBase64String(creds.getBytes());
     }
     
+    public Response getTorrentsRequest(String fields, String id) throws IOException{
+        JsonObject req = new JsonObject();
+        req.addProperty("method", "torrent-get");
+        
+        JsonObject arguments = new JsonObject();
+        Scanner sc = new Scanner(fields).useDelimiter(", *");
+        JsonArray argsarray = new JsonArray();
+        
+        while (sc.hasNext()) {
+            argsarray.add(new JsonPrimitive(sc.next()));
+        }
+        arguments.add("fields", argsarray);
+        
+        if(id != null){
+            sc = new Scanner(id).useDelimiter(", *");
+            JsonArray idsarray = new JsonArray();
+            while (sc.hasNext()) {
+                idsarray.add(new JsonPrimitive(Integer.parseInt(sc.next())));
+            }
+            arguments.add("ids", idsarray);
+        }
+        req.add("arguments", arguments);
+        
+        String result = postRequest("/transmission/rpc", req.toString());
+        Response r = new Gson().fromJson(result, Response.class);
+        return r;
+    }
+    public Response getTorrentsRequest(String fields) throws IOException{
+        return getTorrentsRequest(fields, null);
+    }
     
     
     
