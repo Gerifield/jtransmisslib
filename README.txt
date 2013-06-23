@@ -1,6 +1,12 @@
-Transmission java kliens
+Transmission RPC java API
 
-Még nagyon korai szakaszban van, bár már most is lehet vele dolgozni akár.
+Használható már, de még sok munka van vele, az alábbi apit implementálgatom:
+https://trac.transmissionbt.com/browser/trunk/extras/rpc-spec.txt
+
+Kész:
+3.1     Torrent Action Requests
+3.3.    Torrent Accessors
+
 
 Föggőségek:
 httpclient-4.2.5.jar
