@@ -41,6 +41,17 @@ public class TransmissionManager {
         String creds = user + ":" + pass;
         authdata = Base64.encodeBase64String(creds.getBytes());
     }
+    
+    /**
+     * Akció végrehajtása
+     * @param action Akció (torrent-start, torrent-start-now, torrent-stop, torrent-verify, torrent-reannounce)
+     * @throws IOException 
+     */
+    public boolean torrentAction(String action){
+        return torrentAction(action, null);
+    }
+    
+    
     /**
      * Akció végrehajtása, részeltek:
      * https://trac.transmissionbt.com/browser/trunk/extras/rpc-spec.txt
@@ -48,7 +59,7 @@ public class TransmissionManager {
      * @param action Akció (torrent-start, torrent-start-now, torrent-stop, torrent-verify, torrent-reannounce)
      * @param ids Azonosító (szám, szám lista, sha1 kód...), vesszővel tagolható
      */
-    public void torrentAction(String action, String ids) throws IOException{
+    public boolean torrentAction(String action, String ids){
         JsonObject req = new JsonObject();
         req.addProperty("method", action);
         JsonObject arguments = new JsonObject();
@@ -63,8 +74,17 @@ public class TransmissionManager {
         }
         req.add("arguments", arguments);
         
-        String result = postRequest("/transmission/rpc", req.toString());
-        System.out.println(result);
+        try{
+            String result = postRequest("/transmission/rpc", req.toString());
+            TGetResponse r = new Gson().fromJson(result, TGetResponse.class);
+            if(r.getResult().equals("success")){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(IOException e){
+            return false;
+        }
     }
     
     /**

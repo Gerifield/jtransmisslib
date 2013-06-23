@@ -51,6 +51,14 @@ public class TestApp {
         
         //Response r = tm.postRequest("/transmission/rpc", keres);
         //Response r = tm.getTorrents("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted", null);
+        
+        /*
+        //AKCIÓ végrehajtása
+        tm.torrentAction("torrent-start");
+        /*
+        
+        /*
+        //GET kérés
         TGetResponse r = tm.getTorrentsRequest("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted");
         System.out.println("Res: "+r);
         System.out.println(r.getResult()+" - "+r.getArguments().getTorrents().size());
@@ -60,24 +68,24 @@ public class TestApp {
             System.out.println("      "+t.getTrackers());
             System.out.println("      "+t.getTorrentFile()); 
             
-            /*BASE64Decoder dec = new BASE64Decoder();
-            byte[] b = dec.decodeBuffer(t.getPieces());
-            System.out.print("      Bytes: ("+b.length+") - "+StringUtils.newStringUtf8(b)+" -");
-            for(int i=0;i<b.length; i++){
+            //BASE64Decoder dec = new BASE64Decoder();
+            //byte[] b = dec.decodeBuffer(t.getPieces());
+            //System.out.print("      Bytes: ("+b.length+") - "+StringUtils.newStringUtf8(b)+" -");
+            //for(int i=0;i<b.length; i++){
                 //System.out.print("      "+ b[i]);
                 //System.out.print(fromByte(b[i]));
-                System.out.print(Integer.toBinaryString(b[i]));
-            }
-            System.out.println("      "+t.getPiecesNum());*/
+            //    System.out.print(Integer.toBinaryString(b[i]));
+            //}
+            //System.out.println("      "+t.getPiecesNum());
             //System.out.println("      "+t.getPiecesStr());
             //System.out.println("      "+t.getPriorities().length);
-            /*System.out.println("      Wanted len: "+t.getWanted().length);
-            for(int i=0;i<t.getWanted().length; i++){
-                System.out.print(t.getWanted()[i]);
-            }*/
+            //System.out.println("      Wanted len: "+t.getWanted().length);
+            //for(int i=0;i<t.getWanted().length; i++){
+            //    System.out.print(t.getWanted()[i]);
+            //}
              //System.out.println("");
         }
-
+        */
 
 
         /*HttpHost targetHost = new HttpHost("192.168.0.100", 9091, "http");
