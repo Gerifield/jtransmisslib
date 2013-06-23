@@ -16,6 +16,11 @@ import java.util.Scanner;
  * @author Gergely
  */
 public class TestApp {
+    
+    private static String IP = "192.168.0.100";
+    private static int PORT = 9091;
+    private static String PROTOCOL = "http";
+    private static String USER = "torrent";
 
     /**
      * @param args the command line arguments
@@ -30,7 +35,7 @@ public class TestApp {
         if (sc.hasNext()) {
             password = sc.nextLine();
         }
-        tm.init("192.168.0.100", 9091, "http", "torrent", password);
+        tm.init(IP, PORT, PROTOCOL, USER, password);
         System.out.println("Init OK.");
 
         //String res = tm.postRequest("/transmission/rpc", "{ \"method\": \"torrent-get\", \"arguments\": {\"fields\": [\"id\", \"name\"] } }");
