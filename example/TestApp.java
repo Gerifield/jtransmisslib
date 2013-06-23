@@ -55,7 +55,10 @@ public class TestApp {
         /*
         //AKCIÓ végrehajtása
         tm.torrentAction("torrent-start");
-        /*
+        tm.torrentAction("torrent-stop", "63, 64");
+        tm.torrentAction("torrent-start", "64");
+        */
+        
         
         /*
         //GET kérés

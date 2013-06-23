@@ -65,7 +65,7 @@ public class TransmissionManager {
         JsonObject arguments = new JsonObject();
 
         if(ids != null){
-            Scanner sc = new Scanner(ids).useDelimiter(". *");
+            Scanner sc = new Scanner(ids).useDelimiter(", *");
             JsonArray idsarray = new JsonArray();
             while(sc.hasNext()){
                 idsarray.add(new JsonPrimitive(Integer.parseInt(sc.next())));
