@@ -41,7 +41,39 @@ public class TransmissionManager {
         String creds = user + ":" + pass;
         authdata = Base64.encodeBase64String(creds.getBytes());
     }
+    /**
+     * Akció végrehajtása, részeltek:
+     * https://trac.transmissionbt.com/browser/trunk/extras/rpc-spec.txt
+     * 3.1.  Torrent Action Requests fejezet
+     * @param action Akció (torrent-start, torrent-start-now, torrent-stop, torrent-verify, torrent-reannounce)
+     * @param ids Azonosító (szám, szám lista, sha1 kód...), vesszővel tagolható
+     */
+    public void torrentAction(String action, String ids) throws IOException{
+        JsonObject req = new JsonObject();
+        req.addProperty("method", action);
+        JsonObject arguments = new JsonObject();
+
+        if(ids != null){
+            Scanner sc = new Scanner(ids).useDelimiter(". *");
+            JsonArray idsarray = new JsonArray();
+            while(sc.hasNext()){
+                idsarray.add(new JsonPrimitive(Integer.parseInt(sc.next())));
+            }
+            arguments.add("ids", idsarray);
+        }
+        req.add("arguments", arguments);
+        
+        String result = postRequest("/transmission/rpc", req.toString());
+        System.out.println(result);
+    }
     
+    /**
+     * Torrent adatok lekérdezése
+     * @param fields Vissza várt értékek, vesszővel tagolva
+     * @param id Azonosítókra szűrés, null esetén mindegyik, vesszővel tagolva
+     * @return
+     * @throws IOException 
+     */
     public TGetResponse getTorrentsRequest(String fields, String id) throws IOException{
         JsonObject req = new JsonObject();
         req.addProperty("method", "torrent-get");
@@ -69,6 +101,13 @@ public class TransmissionManager {
         TGetResponse r = new Gson().fromJson(result, TGetResponse.class);
         return r;
     }
+    
+    /**
+     * Torrent adatok lekérdezése az összes torrentről
+     * @param fields Visszavárt paraméterek, vesszővel tagolva
+     * @return
+     * @throws IOException 
+     */
     public TGetResponse getTorrentsRequest(String fields) throws IOException{
         return getTorrentsRequest(fields, null);
     }
