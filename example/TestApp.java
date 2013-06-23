@@ -4,11 +4,16 @@
  */
 package example;
 
+import com.google.gson.Gson;
 import hu.gerifield.jtransmisslib.TransMan;
 import hu.gerifield.jtransmisslib.TransmissionManager;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Torrent;
+import hu.gerifield.jtransmisslib.gsonobj.settorrent.Pair;
+import hu.gerifield.jtransmisslib.gsonobj.settorrent.TSetRequestArgs;
 import java.util.BitSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -56,6 +61,17 @@ public class TestApp {
         
         //Response r = tm.postRequest("/transmission/rpc", keres);
         //Response r = tm.getTorrents("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted", null);
+        
+        TSetRequestArgs tsreq = new TSetRequestArgs();
+        tsreq.setDownloadLimit(100);
+        tsreq.setFiles_unwanted(new LinkedList<Integer>());
+        List<Integer> ids = new LinkedList<>();
+        ids.add(11);
+        ids.add(20);
+        tsreq.setIds(ids);
+        
+        //System.out.println(new Gson().toJson(tsreq, TSetRequestArgs.class));
+        tm.torrentSet(tsreq);
         
         /*
         //AKCIÓ végrehajtása

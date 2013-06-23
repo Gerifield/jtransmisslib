@@ -6,9 +6,11 @@ package hu.gerifield.jtransmisslib;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
+import hu.gerifield.jtransmisslib.gsonobj.settorrent.TSetRequestArgs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -51,6 +53,32 @@ public class TransmissionManager {
         return torrentAction(action, null);
     }
     
+    /**
+     * Torrent tulajdonságok módosítása
+     * @param tsr Miket módosítson (részletek az rpc specifikációban)
+     * @return 
+     */
+    public boolean torrentSet(TSetRequestArgs tsr){
+        if(tsr != null){
+            JsonObject req = new JsonObject();
+            //String req = new Gson().toJson(tsr, TSetRequestArgs.class);
+            req.addProperty("method", "torrent-set");
+            req.add("arguments", new Gson().toJsonTree(tsr, TSetRequestArgs.class));
+            
+            try{
+                TGetResponse r = new Gson().fromJson(postRequest("/transmission/rpc", req.toString()), TGetResponse.class);
+                if(r.getResult().equals("success")){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(IOException e){
+                return false;
+            }
+            
+        }
+        return false;
+    }
     
     /**
      * Akció végrehajtása, részeltek:
