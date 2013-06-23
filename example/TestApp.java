@@ -6,7 +6,7 @@ package example;
 
 import hu.gerifield.jtransmisslib.TransMan;
 import hu.gerifield.jtransmisslib.TransmissionManager;
-import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Response;
+import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Torrent;
 import java.util.BitSet;
 import java.util.Scanner;
@@ -51,7 +51,7 @@ public class TestApp {
         
         //Response r = tm.postRequest("/transmission/rpc", keres);
         //Response r = tm.getTorrents("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted", null);
-        Response r = tm.getTorrentsRequest("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted");
+        TGetResponse r = tm.getTorrentsRequest("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted");
         System.out.println("Res: "+r);
         System.out.println(r.getResult()+" - "+r.getArguments().getTorrents().size());
         for(Torrent t : r.getArguments().getTorrents()){

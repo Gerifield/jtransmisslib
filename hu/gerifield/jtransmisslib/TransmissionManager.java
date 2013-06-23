@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Response;
+import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,7 +42,7 @@ public class TransmissionManager {
         authdata = Base64.encodeBase64String(creds.getBytes());
     }
     
-    public Response getTorrentsRequest(String fields, String id) throws IOException{
+    public TGetResponse getTorrentsRequest(String fields, String id) throws IOException{
         JsonObject req = new JsonObject();
         req.addProperty("method", "torrent-get");
         
@@ -66,10 +66,10 @@ public class TransmissionManager {
         req.add("arguments", arguments);
         
         String result = postRequest("/transmission/rpc", req.toString());
-        Response r = new Gson().fromJson(result, Response.class);
+        TGetResponse r = new Gson().fromJson(result, TGetResponse.class);
         return r;
     }
-    public Response getTorrentsRequest(String fields) throws IOException{
+    public TGetResponse getTorrentsRequest(String fields) throws IOException{
         return getTorrentsRequest(fields, null);
     }
     
@@ -101,7 +101,7 @@ public class TransmissionManager {
             response = httpclient.execute(targetHost, hp);
         }
 
-        Response r = null;
+        TGetResponse r = null;
         HttpEntity respEnt = response.getEntity();
         StringBuilder sb = new StringBuilder();
         if (respEnt != null) {

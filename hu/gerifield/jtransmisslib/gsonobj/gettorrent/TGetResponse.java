@@ -9,7 +9,7 @@ package hu.gerifield.jtransmisslib.gsonobj.gettorrent;
  *
  * @author Gergely
  */
-public class Response {
+public class TGetResponse {
     private String result;
     private Integer tag;
     private Arguments arguments;

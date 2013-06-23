@@ -30,7 +30,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 
-import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Response;
+import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import org.apache.http.protocol.HTTP;
 
 //DOKSI: https://trac.transmissionbt.com/browser/trunk/extras/rpc-spec.txt
@@ -74,10 +74,10 @@ public class TransMan {
         }
     }*/
     
-    public Response getTorrents(String field, String id){
+    public TGetResponse getTorrents(String field, String id){
         String get = genJSONRequest("torrent-get", field, id);
         try{
-            Response r = postRequest("/transmission/rpc", get);
+            TGetResponse r = postRequest("/transmission/rpc", get);
             return r;
         }catch(IOException e){
             return null;
@@ -230,7 +230,7 @@ public class TransMan {
 
     }
     */
-    public Response postRequest(String URL, String request) throws IOException {
+    public TGetResponse postRequest(String URL, String request) throws IOException {
 
         HttpPost hp = new HttpPost(URL);
 
@@ -256,7 +256,7 @@ public class TransMan {
             response = httpclient.execute(targetHost, hp);
         }
 
-        Response r = null;
+        TGetResponse r = null;
         HttpEntity respEnt = response.getEntity();
         if (respEnt != null) {
             String line;
@@ -269,7 +269,7 @@ public class TransMan {
             }
             JsonObject jso = new JsonParser().parse(sb.toString()).getAsJsonObject();
             System.out.println(jso);
-            r = new Gson().fromJson(sb.toString(), Response.class);
+            r = new Gson().fromJson(sb.toString(), TGetResponse.class);
             
         }
          
