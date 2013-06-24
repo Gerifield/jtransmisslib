@@ -5,8 +5,9 @@ https://trac.transmissionbt.com/browser/trunk/extras/rpc-spec.txt
 
 Kész:
 3.1     Torrent Action Requests
+3.2.    Torrent Mutators (trackerReplace hiányzik csak)
 3.3.    Torrent Accessors
-
+3.5.    Removing a Torrent
 
 Föggőségek:
 httpclient-4.2.5.jar
