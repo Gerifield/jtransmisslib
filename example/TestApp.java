@@ -63,6 +63,9 @@ public class TestApp {
         //Response r = tm.postRequest("/transmission/rpc", keres);
         //Response r = tm.getTorrents("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted", null);
         
+        
+        /*
+        //Torrent SET
         TSetRequestArgs tsreq = new TSetRequestArgs();
         List<Integer> ids = new LinkedList<>();
         ids.add(81);
@@ -73,6 +76,12 @@ public class TestApp {
         tsreq.setUploadLimit(10);
         tsreq.setUploadLimited(false);
         tm.torrentSet(tsreq);
+        */
+        
+        
+        //Torrent DEL
+        //tm.torrentRemove("77");
+        //tm.torrentRemove("21", true);
         
         //System.out.println(new Gson().toJson(tsreq, TSetRequestArgs.class));
         //tm.torrentSet(tsreq);
