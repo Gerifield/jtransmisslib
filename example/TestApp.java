@@ -112,10 +112,12 @@ public class TestApp {
             //    System.out.print(t.getWanted()[i]);
             //}
              //System.out.println("");
-            for(TrackerStat ts : t.getTrackerStats()){
-                System.out.print(ts.getId()+" - "+ts.getAnnounce());
-            }
-            System.out.println("");
+            
+            
+            //for(TrackerStat ts : t.getTrackerStats()){
+            //    System.out.print(ts.getId()+" - "+ts.getAnnounce());
+            //}
+            //System.out.println("");
         }
         
 

@@ -54,6 +54,49 @@ public class TransmissionManager {
     }
     
     /**
+     * Torrent törlése, helyi adat meghagyásával
+     * @param ids Azonosító lista, vesszővel tagolva
+     * @return 
+     */
+    public boolean torrentRemove(String ids){
+        return torrentRemove(ids, false);
+    }
+    /**
+     * Torrent törlése
+     * @param ids Azonosító lista, vesszővel tagolva
+     * @param deletelocal Helyi adatot is törölje (default false)
+     * @return 
+     */
+    public boolean torrentRemove(String ids, boolean deletelocal){
+        JsonObject req = new JsonObject();
+        req.addProperty("method", "torrent-remove");
+        JsonObject arguments = new JsonObject();
+        
+        if(ids != null){
+            Scanner sc = new Scanner(ids).useDelimiter(", *");
+            JsonArray idsarray = new JsonArray();
+            while(sc.hasNext()){
+                idsarray.add(new JsonPrimitive(Integer.parseInt(sc.next())));
+            }
+            arguments.add("ids", idsarray);
+        }
+        arguments.add("delete-local-data", new JsonPrimitive(deletelocal));
+        req.add("arguments", arguments);
+        
+        try{
+            String result = postRequest("/transmission/rpc", req.toString());
+            TGetResponse r = new Gson().fromJson(result, TGetResponse.class);
+            if(r.getResult().equals("success")){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(IOException e){
+            return false;
+        }
+    }
+    
+    /**
      * Torrent tulajdonságok módosítása
      * @param tsr Miket módosítson (részletek az rpc specifikációban)
      * @return 
