@@ -7,6 +7,7 @@ Kész:
 3.1     Torrent Action Requests
 3.2.    Torrent Mutators (trackerReplace hiányzik csak)
 3.3.    Torrent Accessors
+3.4.    Adding a Torrent
 3.5.    Removing a Torrent
 
 Föggőségek:
