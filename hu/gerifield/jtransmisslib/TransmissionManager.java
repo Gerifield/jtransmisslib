@@ -67,6 +67,9 @@ public class TransmissionManager {
             
             try{
                 TGetResponse r = new Gson().fromJson(postRequest("/transmission/rpc", req.toString()), TGetResponse.class);
+                System.out.println("-------------");
+                System.out.println(r.getResult()+" "+r.getArguments().toString());
+                System.out.println("-------------");
                 if(r.getResult().equals("success")){
                     return true;
                 }else{

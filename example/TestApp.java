@@ -9,6 +9,7 @@ import hu.gerifield.jtransmisslib.TransMan;
 import hu.gerifield.jtransmisslib.TransmissionManager;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Torrent;
+import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TrackerStat;
 import hu.gerifield.jtransmisslib.gsonobj.settorrent.Pair;
 import hu.gerifield.jtransmisslib.gsonobj.settorrent.TSetRequestArgs;
 import java.util.BitSet;
@@ -63,15 +64,18 @@ public class TestApp {
         //Response r = tm.getTorrents("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted", null);
         
         TSetRequestArgs tsreq = new TSetRequestArgs();
-        tsreq.setDownloadLimit(100);
-        tsreq.setFiles_unwanted(new LinkedList<Integer>());
         List<Integer> ids = new LinkedList<>();
-        ids.add(11);
-        ids.add(20);
+        ids.add(81);
+        //List<String> trackers = new LinkedList();
+        //trackers.add("http://c.ncore.cc:2710/c4b71b3ffa3ec7587073c7a6aa018d57/announce");
+        //tsreq.setTrackerAdd(trackers);
         tsreq.setIds(ids);
+        tsreq.setUploadLimit(10);
+        tsreq.setUploadLimited(false);
+        tm.torrentSet(tsreq);
         
         //System.out.println(new Gson().toJson(tsreq, TSetRequestArgs.class));
-        tm.torrentSet(tsreq);
+        //tm.torrentSet(tsreq);
         
         /*
         //AKCIÓ végrehajtása
@@ -81,7 +85,7 @@ public class TestApp {
         */
         
         
-        /*
+        
         //GET kérés
         TGetResponse r = tm.getTorrentsRequest("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted");
         System.out.println("Res: "+r);
@@ -108,8 +112,12 @@ public class TestApp {
             //    System.out.print(t.getWanted()[i]);
             //}
              //System.out.println("");
+            for(TrackerStat ts : t.getTrackerStats()){
+                System.out.print(ts.getId()+" - "+ts.getAnnounce());
+            }
+            System.out.println("");
         }
-        */
+        
 
 
         /*HttpHost targetHost = new HttpHost("192.168.0.100", 9091, "http");
