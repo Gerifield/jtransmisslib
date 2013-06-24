@@ -9,6 +9,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import hu.gerifield.jtransmisslib.gsonobj.addtorrent.TAddRequestArgs;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import hu.gerifield.jtransmisslib.gsonobj.settorrent.TSetRequestArgs;
 import java.io.BufferedReader;
@@ -42,6 +43,32 @@ public class TransmissionManager {
         httpclient = new DefaultHttpClient();
         String creds = user + ":" + pass;
         authdata = Base64.encodeBase64String(creds.getBytes());
+    }
+    
+    /**
+     * Torrent hozzáadása
+     * @param tadd
+     * @return 
+     */
+    public boolean torrentAdd(TAddRequestArgs tadd){
+        if(tadd != null){
+            JsonObject req = new JsonObject();
+            req.addProperty("method", "torrent-add");
+            req.add("arguments", new Gson().toJsonTree(tadd, TAddRequestArgs.class));
+            
+            try{
+                TGetResponse r = new Gson().fromJson(postRequest("/transmission/rpc", req.toString()), TGetResponse.class);
+                if(r.getResult().equals("success")){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(IOException e){
+                return false;
+            }
+            
+        }
+        return false;
     }
     
     /**
@@ -110,9 +137,6 @@ public class TransmissionManager {
             
             try{
                 TGetResponse r = new Gson().fromJson(postRequest("/transmission/rpc", req.toString()), TGetResponse.class);
-                System.out.println("-------------");
-                System.out.println(r.getResult()+" "+r.getArguments().toString());
-                System.out.println("-------------");
                 if(r.getResult().equals("success")){
                     return true;
                 }else{

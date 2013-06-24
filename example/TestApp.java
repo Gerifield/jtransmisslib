@@ -7,11 +7,13 @@ package example;
 import com.google.gson.Gson;
 import hu.gerifield.jtransmisslib.TransMan;
 import hu.gerifield.jtransmisslib.TransmissionManager;
+import hu.gerifield.jtransmisslib.gsonobj.addtorrent.TAddRequestArgs;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.Torrent;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TrackerStat;
 import hu.gerifield.jtransmisslib.gsonobj.settorrent.Pair;
 import hu.gerifield.jtransmisslib.gsonobj.settorrent.TSetRequestArgs;
+import java.io.File;
 import java.util.BitSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -79,6 +81,14 @@ public class TestApp {
         */
         
         
+        //Torrent ADD
+        //TAddRequestArgs tadd = new TAddRequestArgs();
+        //tadd.setMetainfo(new File("C:\\Users\\Gergely\\Downloads\\[nCore][xvidser]Game.of.Thrones.S03.WEB-DL.x264-Krissz.torrent"));
+        //tadd.setPaused(true);
+        //System.out.println(tm.torrentAdd(tadd));
+        //System.out.println(tadd.getMetainfo());
+        
+        
         //Torrent DEL
         //tm.torrentRemove("77");
         //tm.torrentRemove("21", true);
@@ -94,7 +104,7 @@ public class TestApp {
         */
         
         
-        
+        /*
         //GET kérés
         TGetResponse r = tm.getTorrentsRequest("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted");
         System.out.println("Res: "+r);
@@ -128,7 +138,7 @@ public class TestApp {
             //}
             //System.out.println("");
         }
-        
+        */
 
 
         /*HttpHost targetHost = new HttpHost("192.168.0.100", 9091, "http");
