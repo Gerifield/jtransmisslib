@@ -10,6 +10,7 @@ Kész:
 3.4.    Adding a Torrent
 3.5.    Removing a Torrent
 3.6.    Moving a Torrent
+3.7.    Renaming a Torrent's Path (válasz nincs feldolgozva)
 
 Föggőségek:
 httpclient-4.2.5.jar
