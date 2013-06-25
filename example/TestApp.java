@@ -69,12 +69,13 @@ public class TestApp {
         /*
         //Torrent SET
         TSetRequestArgs tsreq = new TSetRequestArgs();
-        List<Integer> ids = new LinkedList<>();
-        ids.add(81);
+        //List<Integer> ids = new LinkedList<>();
+        //ids.add(81);
         //List<String> trackers = new LinkedList();
         //trackers.add("http://c.ncore.cc:2710/c4b71b3ffa3ec7587073c7a6aa018d57/announce");
         //tsreq.setTrackerAdd(trackers);
-        tsreq.setIds(ids);
+        //tsreq.setIds(ids);
+        tsreq.setIds("82, 81");
         tsreq.setUploadLimit(10);
         tsreq.setUploadLimited(false);
         tm.torrentSet(tsreq);
@@ -104,7 +105,7 @@ public class TestApp {
         */
         
         
-        /*
+        
         //GET kérés
         TGetResponse r = tm.getTorrentsRequest("id, name, peers, trackerStats, torrentFile, pieces, priorities, wanted");
         System.out.println("Res: "+r);
@@ -138,7 +139,7 @@ public class TestApp {
             //}
             //System.out.println("");
         }
-        */
+        
 
 
         /*HttpHost targetHost = new HttpHost("192.168.0.100", 9091, "http");

@@ -5,7 +5,9 @@
 package hu.gerifield.jtransmisslib.gsonobj.settorrent;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -50,6 +52,22 @@ public class TSetRequestArgs {
     private Integer uploadLimit;
     private Boolean uploadLimited;
 
+    
+    /**
+     * ID-k megadása string alapján
+     * @param ids 
+     */
+    public void setIds(String ids){
+        if(ids != null && !ids.isEmpty()){
+            this.ids = new LinkedList<>();
+            
+            Scanner sc = new Scanner(ids).useDelimiter(", *");
+            while(sc.hasNext()){
+                this.ids.add(Integer.parseInt(sc.next()));
+            }
+        }
+    }
+    
     /**
      * @return the bandwidthPriority
      */
