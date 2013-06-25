@@ -13,6 +13,7 @@ import hu.gerifield.jtransmisslib.gsonobj.addtorrent.TAddRequestArgs;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import hu.gerifield.jtransmisslib.gsonobj.settorrent.TSetRequestArgs;
 import hu.gerifield.jtransmisslib.gsonobj.settorrentloc.TSetLocReqArgs;
+import hu.gerifield.jtransmisslib.gsonobj.settorrentpath.TSetPathReqArgs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,6 +45,29 @@ public class TransmissionManager {
         httpclient = new DefaultHttpClient();
         String creds = user + ":" + pass;
         authdata = Base64.encodeBase64String(creds.getBytes());
+    }
+    
+    
+    /**
+     * Torrent helyének átnevezése
+     * TODO: választ rendesen feldolgozni!
+     * @param tsetpath
+     * @return 
+     */
+    public boolean torrentSetLocation(TSetPathReqArgs tsetpath){
+        if(tsetpath != null){
+            JsonObject req = new JsonObject();
+            req.addProperty("method", "torrent-rename-path");
+            req.add("arguments", new Gson().toJsonTree(tsetpath, TSetPathReqArgs.class));
+            try{
+                postRequest("/transmission/rpc", req.toString());
+                //TODO: Válasz feldolgozása
+            }catch(IOException e){
+                return false;
+            }
+            
+        }
+        return false;
     }
     
     /**
