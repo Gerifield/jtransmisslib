@@ -9,6 +9,7 @@ Kész:
 3.3.    Torrent Accessors
 3.4.    Adding a Torrent
 3.5.    Removing a Torrent
+3.6.    Moving a Torrent
 
 Föggőségek:
 httpclient-4.2.5.jar

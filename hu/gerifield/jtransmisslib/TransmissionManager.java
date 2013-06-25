@@ -12,6 +12,7 @@ import com.google.gson.JsonPrimitive;
 import hu.gerifield.jtransmisslib.gsonobj.addtorrent.TAddRequestArgs;
 import hu.gerifield.jtransmisslib.gsonobj.gettorrent.TGetResponse;
 import hu.gerifield.jtransmisslib.gsonobj.settorrent.TSetRequestArgs;
+import hu.gerifield.jtransmisslib.gsonobj.settorrentloc.TSetLocReqArgs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,6 +44,31 @@ public class TransmissionManager {
         httpclient = new DefaultHttpClient();
         String creds = user + ":" + pass;
         authdata = Base64.encodeBase64String(creds.getBytes());
+    }
+    
+    /**
+     * Torrent áthelyezése
+     * @param tsetloc
+     * @return 
+     */
+    public boolean torrentSetLocation(TSetLocReqArgs tsetloc){
+        if(tsetloc != null){
+            JsonObject req = new JsonObject();
+            req.addProperty("method", "torrent-set-location");
+            req.add("arguments", new Gson().toJsonTree(tsetloc, TSetLocReqArgs.class));
+            try{
+                TGetResponse r = new Gson().fromJson(postRequest("/transmission/rpc", req.toString()), TGetResponse.class);
+                if(r.getResult().equals("success")){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(IOException e){
+                return false;
+            }
+            
+        }
+        return false;
     }
     
     /**
