@@ -4,13 +4,22 @@ Használható már, de még sok munka van vele, az alábbi apit implementálgato
 https://trac.transmissionbt.com/browser/trunk/extras/rpc-spec.txt
 
 Kész:
+3
+=
 3.1     Torrent Action Requests
+-------------------------------
 3.2.    Torrent Mutators (trackerReplace hiányzik csak)
+------------------------
 3.3.    Torrent Accessors
+-------------------------
 3.4.    Adding a Torrent
+------------------------
 3.5.    Removing a Torrent
+--------------------------
 3.6.    Moving a Torrent
+------------------------
 3.7.    Renaming a Torrent's Path (válasz nincs feldolgozva)
+---------------------------------
 
 Föggőségek:
 httpclient-4.2.5.jar
